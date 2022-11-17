@@ -3,26 +3,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.http import Http404
 from rest_framework.views import APIView
-
-# Create your views here.
-
 from .models import *
 from .serializers import *
-
-import pyrebase
-import datetime
-
-config = {
-    "apiKey": "AIzaSyC-UHZlYoFZX_otZDBOxlskclyebZFAtdc",
-    "authDomain": "server-check-1c979.firebaseapp.com",
-    "databaseURL": "https://server-check-1c979-default-rtdb.firebaseio.com",
-    "storageBucket": "server-check-1c979.appspot.com",
-}
-
-firebase = pyrebase.initialize_app(config)
-db = firebase.database()
-
-state = True
 
 
 class Device_details(APIView):
