@@ -194,3 +194,17 @@ class water(models.Model):
 
     class Meta:
         ordering = ["id"]
+
+
+class led(models.Model):
+    Room = models.CharField(max_length=50, default="")
+    Name = models.CharField(max_length=50, default="")
+    count = models.IntegerField(default=0)
+    RGB = models.IntegerField(default=0)
+    Hexa = models.IntegerField(default=0)
+    Status = models.BooleanField(default=False)
+    Time_Stamp = models.IntegerField(default=0)
+    Last_Updated = models.CharField(max_length=70, default="")
+
+    class Meta:
+        ordering = ["id"]

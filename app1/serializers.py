@@ -484,3 +484,37 @@ class waterSerializers(serializers.Serializer):
     class Meta:
         model = water
         fields = ["__all__"]
+
+
+class ledSerializers(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
+    Room = serializers.CharField(required=False)
+    Name = serializers.CharField(required=False)
+    count = serializers.IntegerField(required=False)
+    RGB = serializers.IntegerField(required=False)
+    Hexa = serializers.IntegerField(required=False)
+    Status = serializers.BooleanField(required=False)
+    Time_Stamp = serializers.IntegerField(required=False)
+    Last_Updated = serializers.CharField(required=False)
+
+    def create(self, validated_data):
+        return led.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.Room = validated_data.get("Room", instance.Room)
+        instance.Name = validated_data.get("Name", instance.Name)
+        instance.count = validated_data.get("count", instance.count)
+        instance.RGB = validated_data.get("RGB", instance.RGB)
+        instance.Hexa = validated_data.get("Hexa", instance.Hexa)
+        instance.Status = validated_data.get("Status", instance.Status)
+        instance.Time_Stamp = validated_data.get("Time_Stamp", instance.Time_Stamp)
+        instance.Last_Updated = validated_data.get(
+            "Last_Updated", instance.Last_Updated
+        )
+
+        instance.save()
+        return instance
+
+    class Meta:
+        model = led
+        fields = ["__all__"]

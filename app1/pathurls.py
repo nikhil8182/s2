@@ -31,6 +31,8 @@ urlpatterns = [
     path("em/<int:pk>/", views.em_change.as_view()),
     path("water/", views.water_view.as_view()),
     path("water/<int:pk>/", views.water_change.as_view()),
+    path("led/", views.led_view.as_view()),
+    path("led/<int:pk>/", views.led_change.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
