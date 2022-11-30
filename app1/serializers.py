@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import *
-
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class DeviceSerializers(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
@@ -491,8 +491,12 @@ class ledSerializers(serializers.Serializer):
     Room = serializers.CharField(required=False)
     Name = serializers.CharField(required=False)
     count = serializers.IntegerField(required=False)
-    RGB = serializers.IntegerField(required=False)
-    Hexa = serializers.IntegerField(required=False)
+    RGB = serializers.CharField(required=False)
+    R = serializers.IntegerField(required=False)
+    G = serializers.IntegerField(required=False)
+    B = serializers.IntegerField(required=False)
+    Brightness = serializers.IntegerField(required=False,  min_value=1, max_value=255)
+    Hexa = serializers.CharField(required=False)
     Status = serializers.BooleanField(required=False)
     Time_Stamp = serializers.IntegerField(required=False)
     Last_Updated = serializers.CharField(required=False)
@@ -505,6 +509,10 @@ class ledSerializers(serializers.Serializer):
         instance.Name = validated_data.get("Name", instance.Name)
         instance.count = validated_data.get("count", instance.count)
         instance.RGB = validated_data.get("RGB", instance.RGB)
+        instance.R = validated_data.get("R", instance.R)
+        instance.G = validated_data.get("G", instance.G)
+        instance.B = validated_data.get("B", instance.B)
+        instance.Brightness = validated_data.get("Brightness", instance.Brightness)
         instance.Hexa = validated_data.get("Hexa", instance.Hexa)
         instance.Status = validated_data.get("Status", instance.Status)
         instance.Time_Stamp = validated_data.get("Time_Stamp", instance.Time_Stamp)

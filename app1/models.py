@@ -1,6 +1,5 @@
 from django.db import models
-from django.db.models.fields import BooleanField
-import datetime
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 class Device(models.Model):
@@ -200,8 +199,14 @@ class led(models.Model):
     Room = models.CharField(max_length=50, default="")
     Name = models.CharField(max_length=50, default="")
     count = models.IntegerField(default=0)
-    RGB = models.IntegerField(default=0)
-    Hexa = models.IntegerField(default=0)
+    RGB = models.CharField(max_length=50, default="")
+    R =  models.IntegerField(default=0)
+    G= models.IntegerField(default=0)
+    B= models.IntegerField(default=0)
+    Brightness =  models.IntegerField(default=0, validators=[
+        MinValueValidator(1),
+        MaxValueValidator(255)])
+    Hexa = models.CharField(max_length=50, default="")
     Status = models.BooleanField(default=False)
     Time_Stamp = models.IntegerField(default=0)
     Last_Updated = models.CharField(max_length=70, default="")
